@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <script>
+    // function populateDiv() {
+    //     const a = document.getElementById("firstNumber").value;
+    //     const b = document.getElementById("secondNumber").value;
+
+    //     // const element = document.getElementById("finalSum");
+    //     // element.innerHTML = parseInt(a) + parseInt(b);
+
+    //     // fetch
+    //     fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+    //       .then(function(response) {
+    //         response.text()
+    //           .then(function(ans) {
+    //             document.getElementById("finalSum").innerHTML = ans;
+    //           })
+    //       })
+    // }
+
+    // debouncing
+    let timeout;
+    function debouncePopulateDiv(){
+      // delay the call to populateDiv until it have have not been called for 100ms
+      // and I've been called atleast once
+      clearTimeout(timeout);
+
+      timeout = setTimeout(function(){
+        populateDiv()
+      }, 1000);
+    }
+
+    async function populateDiv(){
+      const a = document.getElementById("firstNumber").value;
+      const b = document.getElementById("secondNumber").value;
+
+      const response = await fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+      const ans = await response.text();
+      document.getElementById("finalSum").innerHTML = ans;
+    }
+  </script>
+
+  <body>
+    <input oninput="debouncePopulateDiv()" id="firstNumber" type="number" placeholder="First number" /> <br /><br />
+    <input oninput="debouncePopulateDiv()" id="secondNumber" type="number" placeholder="Second number" /> <br /><br />
+    <!-- <button onclick="populateDiv()">Calculate Sum</button> <br><br> -->
+    <div id="finalSum"></div>
+  </body>
+</html>
