@@ -1,29 +1,48 @@
-import React, { useEffect } from "react";
 import "./App.css"
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <>
-      <MyComponent />
-    </>
-  )
-}
+function useTodos(n) {
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-function MyComponent() {
   useEffect(() => {
-    // Perform setup or data fetching here
-    console.error("component mounted");
+    const value = setInterval(() => {
+      axios.get("https://sum-server.100xdevs.com/todos")
+      .then(res => {
+        setTodos(res.data.todos);
+        setLoading(false);
+      })
+    }, n * 1000);
 
     return () => {
-      // Cleanup code (similar to compenentWillUnmount)
-      console.log("component unmounted");
-    };
-  }, [])
+      clearInterval(value);
+    }
+  }, [n])
 
-  // Render UI
+  return {todos, loading};
+}
+
+function App() {
+  const {todos, loading} = useTodos(10);
+
+  if(loading) {
+    return <div> loading... </div>
+  }
+  
+  return (
+    <>
+      {todos.map(todo => <Track todo={todo} />)}
+    </>
+  );
+}
+
+function Track({ todo }) {
   return <div>
-    From inside my component
+    {todo.title}
+    <br />
+    {todo.description}
   </div>
-} 
+}
 
 export default App
