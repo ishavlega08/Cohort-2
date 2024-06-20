@@ -18,7 +18,7 @@ compatibility_flags = ["nodejs_compat"]
 # - https://developers.cloudflare.com/workers/configuration/secrets/
 
 [vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiZWEyNDhmM2EtZjEwNS00ZGU3LThmZWEtZWVkZmYwZjllOTkyIiwidGVuYW50X2lkIjoiOTBlNjliNWUxMDhmM2U4NzIxNzkyOGU5YjkzNTkzOWMwZWFkZDE4MmVlYTFhNjFkMDMyZjViZThmOTZmOGMxMiIsImludGVybmFsX3NlY3JldCI6IjAyZjM0ZmJiLWViZjYtNGU1Mi1hNmU1LTk3ZmEzOWFiOGU0ZSJ9.2EcbonRpx-pJdQxVOV27szzWWdv4mhp3sSwB4kBwXes"
+DATABASE_URL="accelerate url"
 
 # MY_VARIABLE = "production_value"
 
